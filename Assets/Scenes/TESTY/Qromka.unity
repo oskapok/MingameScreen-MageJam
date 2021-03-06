@@ -2646,6 +2646,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4600769301950384348, guid: 6d2eab7923149bf44950d1aec07353cf, type: 3}
+      propertyPath: maxRifleAmmo
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600769301950384348, guid: 6d2eab7923149bf44950d1aec07353cf, type: 3}
       propertyPath: numberOfPlayers
       value: 2
       objectReference: {fileID: 0}
