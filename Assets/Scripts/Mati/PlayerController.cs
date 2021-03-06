@@ -6,6 +6,12 @@ public class PlayerController : MonoBehaviour
 {
 
     private Rigidbody2D rb;
+    
+    [Header("Controls")]
+    [SerializeField] private int playerNumber;
+    private string playerAxis;
+    private int jumpKey;
+    private int shootKey;
 
     [Header("Movement")]
     public bool canMove = true;
@@ -14,15 +20,33 @@ public class PlayerController : MonoBehaviour
     private Vector2 localScale;
     private bool facingRight;
 
-    [Header("Jump")]
+    [Header("Jumping")]
     public bool canJump = true;
-    [SerializeField] private float jumpForce = 3f;
+    [SerializeField] private float jumpForce = 8f;
+    
 
+    [Header("Shooting")]
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform outOfWeapon;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         localScale = transform.localScale;
+
+        switch(playerNumber)
+        {
+            case 1:
+                playerAxis = "Horizontal_P1";
+                jumpKey = (int)KeyCode.W;
+                shootKey = (int)KeyCode.Space;
+                break;
+            case 2:
+                playerAxis = "Horizontal_P2";
+                jumpKey = (int)KeyCode.UpArrow;
+                shootKey = (int)KeyCode.RightShift;
+                break;
+        }
     }
 
     void FixedUpdate()
@@ -36,7 +60,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canMove)
         {
-            horizontalMove = Input.GetAxis("Horizontal");
+            horizontalMove = Input.GetAxis(playerAxis);
             rb.velocity = new Vector2(horizontalMove * moveSpeed, rb.velocity.y);
 
             if(horizontalMove > 0)
@@ -47,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
         if (canJump)
         {
-            if (Input.GetKey(KeyCode.W) && rb.velocity.y == 0)
+            if (Input.GetKey((KeyCode)(jumpKey)) && rb.velocity.y == 0)
             {
                 rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             }
@@ -68,6 +92,9 @@ public class PlayerController : MonoBehaviour
 
     void Shooting()
     {
-
+        if(Input.GetKey((KeyCode)(shootKey)))
+        {
+            Instantiate(bulletPrefab, outOfWeapon.position, Quaternion.identity);
+        }
     }
 }
