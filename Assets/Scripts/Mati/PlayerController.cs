@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -23,11 +22,23 @@ public class PlayerController : MonoBehaviour
     [Header("Jumping")]
     public bool canJump = true;
     [SerializeField] private float jumpForce = 8f;
-    
+
 
     [Header("Shooting")]
+    public bool canShoot = true;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform outOfWeapon;
+    [SerializeField] private float fireRate;
+    [SerializeField] private float fireTimer;
+
+
+    [Header("Gravity")]
+    [SerializeField] private bool isGrounded;
+    [SerializeField] private Transform groundCheck1;
+    [SerializeField] private Transform groundCheck2;
+    [SerializeField] private float groundDist = 0.4f;
+    [SerializeField] private LayerMask groundMask;
+
 
     void Start()
     {
@@ -58,10 +69,13 @@ public class PlayerController : MonoBehaviour
 
     void Movement()
     {
+        isGrounded = Physics2D.OverlapArea(groundCheck1.position, groundCheck2.position, groundMask);
+
+
         if (canMove)
         {
             horizontalMove = Input.GetAxis(playerAxis);
-            rb.velocity = new Vector2(horizontalMove * moveSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(horizontalMove * moveSpeed, Mathf.Clamp(rb.velocity.y, -jumpForce, jumpForce));
 
             if(horizontalMove > 0)
                 facingRight = true;
@@ -71,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
         if (canJump)
         {
-            if (Input.GetKey((KeyCode)(jumpKey)) && rb.velocity.y == 0)
+            if (Input.GetKeyDown((KeyCode)(jumpKey)) && isGrounded)
             {
                 rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             }
@@ -90,11 +104,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
     void Shooting()
     {
-        if(Input.GetKey((KeyCode)(shootKey)))
+        if (canShoot)
         {
-            Instantiate(bulletPrefab, outOfWeapon.position, Quaternion.identity);
+            if (Input.GetKey((KeyCode)(shootKey)))
+            {
+                fireTimer += Time.deltaTime;
+                if (fireTimer * 10 > fireRate)
+                {
+                    GameObject bullet = Instantiate(bulletPrefab, outOfWeapon.position, Quaternion.identity);
+                    bullet.GetComponent<Bullet>().side = Convert.ToInt32(facingRight);
+                    fireTimer = 0;
+                }
+            }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        //Gizmos.DrawSphere(groundCheck1.position, groundDist);
+        //Gizmos.DrawSphere(groundCheck2.position, groundDist);
+        Gizmos.DrawLine(groundCheck1.position, groundCheck2.position);
     }
 }
