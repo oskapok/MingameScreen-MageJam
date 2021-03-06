@@ -186,8 +186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uI: {fileID: 0}
-  ammoPrefabPistol: {fileID: 174692288967029375, guid: 6e0d526bdfd1cc549b5f4e237de5cc3c, type: 3}
-  ammoPrefabRifle: {fileID: 174692288967029375, guid: af177a2ca7780924fb64bec9dded0e4b, type: 3}
-  ammoPrefabShothgun: {fileID: 174692288967029375, guid: eccb8b2e9318d8d489a55e98adb8f0f3, type: 3}
+  ammoEmptyPrefabPistol: {fileID: 174692288967029375, guid: 6e0d526bdfd1cc549b5f4e237de5cc3c, type: 3}
+  ammoEmptyPrefabRifle: {fileID: 174692288967029375, guid: af177a2ca7780924fb64bec9dded0e4b, type: 3}
+  ammoEmptyPrefabShothgun: {fileID: 174692288967029375, guid: eccb8b2e9318d8d489a55e98adb8f0f3, type: 3}
   ammoGrid: {fileID: 1271000567567010208}
-  currentWeaponAmmoType: {fileID: 5571880341673539731, guid: 4a4a9811b1b7454429c6ccd10beaad04, type: 3}
+  currentWeaponAmmo: {fileID: 0}
+  currentWeaponAmmoEmpty: {fileID: 0}

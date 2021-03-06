@@ -68,16 +68,22 @@ public class UI_Game : MonoBehaviour
                 }
                 break;
         }
+
     }
 
     void UpdateAmmo(object sender, PlayerEventArgs e)
     {
-        uI_Players[e.playerIndex].AddAmmo();
+        if(e.ammoIncrease)
+            uI_Players[e.playerIndex].AddAmmo(GameManager.Instance.GetCurrentAmmo(e.playerIndex));
+        else
+            uI_Players[e.playerIndex].RemoveAmmo(GameManager.Instance.GetCurrentAmmo(e.playerIndex));
     }
 
     void UpdateWeapon(object sender, PlayerEventArgs e)
     {
-        uI_Players[e.playerIndex].SwitchWeapon(e.weapon);
+        uI_Players[e.playerIndex].SwitchWeapon(e.weapon, GameManager.Instance.GetCurrentAmmo(e.playerIndex));
+
+
     }
 
     void Start()
@@ -88,5 +94,6 @@ public class UI_Game : MonoBehaviour
     void OnDestroy()
     {
         GameManager.updateAmmoEvent -= UpdateAmmo;
+        GameManager.updateWeaponEvent -= UpdateWeapon;
     }
 }

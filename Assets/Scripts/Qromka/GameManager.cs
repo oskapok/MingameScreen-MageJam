@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     int startPistolAmmo = 1;
 
+
     [SerializeField]
     int maxPistolAmmo = 4;
 
@@ -31,6 +32,21 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     int maxShotgunAmmo = 3;
 
+
+    public int MaxPistolAmmo
+    {
+        get { return maxPistolAmmo; }
+    }
+
+    public int MaxRifleAmmo
+    {
+        get { return maxRifleAmmo; }
+    }
+
+    public int MaxShotgunAmmo
+    {
+        get { return maxShotgunAmmo; }
+    }
     private void Awake()
     {
         if (Instance == null)
@@ -112,24 +128,24 @@ public class GameManager : MonoBehaviour
             case Weapon.Pistol:
                 if (selectedPlayer.ammo < maxPistolAmmo)
                 {
-                    selectedPlayer.ammo++;
-                    updateAmmoEvent?.Invoke(this, new PlayerEventArgs(playerIndex));
+                    selectedPlayer.ammo = maxPistolAmmo;
+                    updateAmmoEvent?.Invoke(this, new PlayerEventArgs(playerIndex, true));
                     return true;
                 }
                 break;
             case Weapon.Rifle:
                 if (selectedPlayer.ammo < maxRifleAmmo)
                 {
-                    selectedPlayer.ammo++;
-                    updateAmmoEvent?.Invoke(this, new PlayerEventArgs(playerIndex));
+                    selectedPlayer.ammo = maxRifleAmmo;
+                    updateAmmoEvent?.Invoke(this, new PlayerEventArgs(playerIndex, true));
                     return true;
                 }
                 break;
             case Weapon.Shotgun:
                 if (selectedPlayer.ammo < maxShotgunAmmo)
                 {
-                    selectedPlayer.ammo++;
-                    updateAmmoEvent?.Invoke(this, new PlayerEventArgs(playerIndex));
+                    selectedPlayer.ammo = maxShotgunAmmo;
+                    updateAmmoEvent?.Invoke(this, new PlayerEventArgs(playerIndex, true));
                     return true;
                 }
                 break;
@@ -139,10 +155,10 @@ public class GameManager : MonoBehaviour
     public bool RemoveAmmo(int playerIndex)
     {
         PlayerData selectedPlayer = playerDatas[playerIndex];
-        if (selectedPlayer.ammo > 1)
+        if (selectedPlayer.ammo >= 1)
         {
             selectedPlayer.ammo--;
-            updateAmmoEvent?.Invoke(this, new PlayerEventArgs(playerIndex));
+            updateAmmoEvent?.Invoke(this, new PlayerEventArgs(playerIndex,false));
             return true;
         }    
         return false;
@@ -151,30 +167,26 @@ public class GameManager : MonoBehaviour
     public bool SwitchWeapon(int playerIndex, Weapon newWeapon)
     {
         PlayerData selectedPlayer = playerDatas[playerIndex];
-        if(selectedPlayer.weapon != newWeapon)
-        {
+
             selectedPlayer.weapon = newWeapon;
             switch (newWeapon)
             {
                 case Weapon.Pistol:
-                    selectedPlayer.ammo = 4;
-                    updateAmmoEvent?.Invoke(this, new PlayerEventArgs(playerIndex));
+                    selectedPlayer.ammo = maxPistolAmmo;
+                    updateWeaponEvent?.Invoke(this, new PlayerEventArgs(playerIndex, newWeapon));
                     break;
                 case Weapon.Rifle:
-                    selectedPlayer.ammo = 3;
-                    updateAmmoEvent?.Invoke(this, new PlayerEventArgs(playerIndex));
+                    selectedPlayer.ammo = maxRifleAmmo;
+                    updateWeaponEvent?.Invoke(this, new PlayerEventArgs(playerIndex, newWeapon));
                     break;
                 case Weapon.Shotgun:
-                    selectedPlayer.ammo = 2;
-                    updateAmmoEvent?.Invoke(this, new PlayerEventArgs(playerIndex));
+                    selectedPlayer.ammo = maxShotgunAmmo;
+                    updateWeaponEvent?.Invoke(this, new PlayerEventArgs(playerIndex, newWeapon));
                     break;
             }
-            
-            updateWeaponEvent?.Invoke(this, new PlayerEventArgs(playerIndex,newWeapon));
+            //updateAmmoEvent?.Invoke(this, new PlayerEventArgs(playerIndex,true));
             return true;
-        }
-        else
-            return false;
+       
 
     }
 }

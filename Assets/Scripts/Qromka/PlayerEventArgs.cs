@@ -6,6 +6,7 @@ using System;
 public class PlayerEventArgs : EventArgs
 {
     private readonly int _playerIndex;
+    private readonly bool _ammoIncrease;
     private readonly Weapon _playerWeapon;
 
     public PlayerEventArgs(int playerIndex)
@@ -18,6 +19,18 @@ public class PlayerEventArgs : EventArgs
         _playerIndex = playerIndex;
         _playerWeapon = weapon;
     }
+    public PlayerEventArgs(int playerIndex, bool ammoIncrease)
+    {
+        _playerIndex = playerIndex;
+        _ammoIncrease = ammoIncrease;
+    }
+    public PlayerEventArgs(int playerIndex, Weapon weapon, bool ammoIncrease)
+    {
+        _playerIndex = playerIndex;
+        _playerWeapon = weapon;
+        _ammoIncrease = ammoIncrease;
+    }
+
 
     public int playerIndex
     {
@@ -26,5 +39,9 @@ public class PlayerEventArgs : EventArgs
     public Weapon weapon
     {
         get { return _playerWeapon; }
+    }
+    public bool ammoIncrease
+    {
+        get { return _ammoIncrease; }
     }
 }

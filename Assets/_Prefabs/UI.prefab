@@ -498,6 +498,9 @@ MonoBehaviour:
   - {fileID: 5571880341673539731, guid: 4a4a9811b1b7454429c6ccd10beaad04, type: 3}
   - {fileID: 2145783106276811055, guid: 4a4a9811b1b7454429c6ccd10beaad04, type: 3}
   - {fileID: -6202124227103647301, guid: 4a4a9811b1b7454429c6ccd10beaad04, type: 3}
+  - {fileID: 2383649954997259630, guid: 4a4a9811b1b7454429c6ccd10beaad04, type: 3}
+  - {fileID: 1758616043475329540, guid: 4a4a9811b1b7454429c6ccd10beaad04, type: 3}
+  - {fileID: 2755580093516108857, guid: 4a4a9811b1b7454429c6ccd10beaad04, type: 3}
 --- !u!1001 &3286127778325187437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -750,7 +753,7 @@ PrefabInstance:
     - target: {fileID: 6471192067907219954, guid: 8b6cd1c26e7ff854f94bce36db0a99a8, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1773399724005132075, guid: c339939a358907c4bb937be255aa2981, type: 3}
+      objectReference: {fileID: -5311167649274386289, guid: 4a4a9811b1b7454429c6ccd10beaad04, type: 3}
     - target: {fileID: 6471192068151600869, guid: 8b6cd1c26e7ff854f94bce36db0a99a8, type: 3}
       propertyPath: m_Name
       value: UI_Board_Player2
@@ -961,7 +964,7 @@ PrefabInstance:
     - target: {fileID: 8777054744725522925, guid: 3a46047186080454185bc79af5443631, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 7996186943839200142, guid: c339939a358907c4bb937be255aa2981, type: 3}
+      objectReference: {fileID: -7348344858259507322, guid: 4a4a9811b1b7454429c6ccd10beaad04, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a46047186080454185bc79af5443631, type: 3}
 --- !u!1 &80815614197971796 stripped

@@ -36,9 +36,6 @@ public class UI_ScoreBoard : MonoBehaviour
     private void OnEnable()
     {
         countDownText.text = duration.ToString();
-        
-
-
         StartCoroutine(CountDown());
     }
     private IEnumerator CountDown()
