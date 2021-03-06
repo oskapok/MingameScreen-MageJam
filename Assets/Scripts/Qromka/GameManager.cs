@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public static event EventHandler<PlayerEventArgs> updateAmmoEvent;
     public static event EventHandler<PlayerEventArgs> updateWeaponEvent;
 
+    public UI_Game UI;
+
     List<PlayerData> playerDatas = new List<PlayerData>();
 
     [Header("Game-Settings")]
@@ -23,7 +25,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     int maxPistolAmmo = 4;
 
+    [SerializeField]
     int maxRifleAmmo = 6;
+
+    [SerializeField]
     int maxShotgunAmmo = 3;
 
     private void Awake()
@@ -48,6 +53,7 @@ public class GameManager : MonoBehaviour
 
     void SetUpScene()
     {
+        //Create Player datas 
         switch (numberOfPlayers)
         {
             case 2:
@@ -67,6 +73,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
+        //Assign Default Values
         for (int i = 0; i < numberOfPlayers; i++)
         {
             playerDatas[i].player = GameObject.Find("Player" + i.ToString());
@@ -74,13 +81,29 @@ public class GameManager : MonoBehaviour
             playerDatas[i].ammo = startPistolAmmo;
             playerDatas[i].isAlive = true;
         }
-        
+
+        //Synchronize UI
+        ConnectUI();
+        UI.Initialize(numberOfPlayers);
+    }
+
+
+    void ConnectUI()
+    {
+        if(UI == null)
+        {
+            UI = GameObject.FindObjectOfType<UI_Game>();
+        }
+    }
+
+    public int GetCurrentAmmo(int playerIndex)
+    {
+        return playerDatas[playerIndex].ammo;
     }
 
     public bool AddAmmo(int playerIndex)
     {
         PlayerData selectedPlayer = playerDatas[playerIndex];
-
         switch(selectedPlayer.weapon)
         {
             case Weapon.Pistol:
@@ -110,13 +133,26 @@ public class GameManager : MonoBehaviour
         }
         return false;
     }
+    public bool RemoveAmmo(int playerIndex)
+    {
+        PlayerData selectedPlayer = playerDatas[playerIndex];
+        if (selectedPlayer.ammo > 1)
+        {
+            selectedPlayer.ammo--;
+            updateAmmoEvent?.Invoke(this, new PlayerEventArgs(playerIndex));
+            return true;
+        }    
+
+        return false;
+    }
 
     public bool SwitchWeapon(int playerIndex, Weapon newWeapon)
     {
         PlayerData selectedPlayer = playerDatas[playerIndex];
         if(selectedPlayer.weapon != newWeapon)
         {
-            switch(newWeapon)
+            selectedPlayer.weapon = newWeapon;
+            switch (newWeapon)
             {
                 case Weapon.Pistol:
                     selectedPlayer.ammo = 4;
@@ -131,8 +167,8 @@ public class GameManager : MonoBehaviour
                     updateAmmoEvent?.Invoke(this, new PlayerEventArgs(playerIndex));
                     break;
             }
-            selectedPlayer.weapon = newWeapon;
-            updateWeaponEvent?.Invoke(this, new PlayerEventArgs(playerIndex));
+            
+            updateWeaponEvent?.Invoke(this, new PlayerEventArgs(playerIndex,newWeapon));
             return true;
         }
         else

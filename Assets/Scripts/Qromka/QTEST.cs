@@ -7,7 +7,6 @@ public class QTEST : MonoBehaviour
     private void Start()
     {
 
-
     }
 
 
@@ -28,6 +27,14 @@ public class QTEST : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Keypad4))
         {
             Debug.Log(GameManager.Instance.AddAmmo(3));
+        }
+        else if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log(GameManager.Instance.SwitchWeapon(0,Weapon.Rifle));
+        }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log(GameManager.Instance.SwitchWeapon(1, Weapon.Shotgun));
         }
     }
 }
