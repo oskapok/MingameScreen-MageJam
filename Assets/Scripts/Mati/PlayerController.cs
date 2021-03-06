@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     
     [Header("Controls")]
-    [SerializeField] private int playerNumber;
+    public int playerNumber;
     private string playerAxis;
     private int jumpKey;
     private int shootKey;
@@ -60,6 +60,8 @@ public class PlayerController : MonoBehaviour
                 shootKey = (int)KeyCode.RightShift;
                 break;
         }
+
+        playerNumber -= 1;
     }
 
     void FixedUpdate()
@@ -110,31 +112,21 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector2(localScale.x * -1, localScale.y);
         }
     }
-    /*
-    void Shooting()
-    {
-        if (canShoot)
-        {
-            if (Input.GetKey((KeyCode)(shootKey)))
-            {
-                fireTimer += Time.deltaTime;
-                if (fireTimer * 10 > fireRate)
-                {
-                    GameObject bullet = Instantiate(bulletPrefab, outOfWeapon.position, Quaternion.identity);
-                    bullet.GetComponent<Bullet>().side = Convert.ToInt32(facingRight);
-                    fireTimer = 0;
-                }
-            }
-        }
-    }
-    */
+
     void Shoot()
     {
         if (canShoot)
         {
             if (Input.GetKey((KeyCode)(shootKey)) && !isShooting)
             {
-                shootingRoutine = StartCoroutine(Shooting());
+                if (GameManager.Instance.RemoveAmmo(playerNumber) == true)
+                {
+                    shootingRoutine = StartCoroutine(Shooting());
+                }
+                else
+                {
+                    Debug.Log("no ammo");
+                }
             }
         }
         else
