@@ -55,7 +55,7 @@ MonoBehaviour:
   ammoPrefabRifle: {fileID: 174692288967029375, guid: af177a2ca7780924fb64bec9dded0e4b, type: 3}
   ammoPrefabShothgun: {fileID: 174692288967029375, guid: eccb8b2e9318d8d489a55e98adb8f0f3, type: 3}
   ammoGrid: {fileID: 2807946153629063611}
-  currentWeaponAmmoType: {fileID: 0}
+  currentWeaponAmmoType: {fileID: 5571880341673539731, guid: 4a4a9811b1b7454429c6ccd10beaad04, type: 3}
 --- !u!1 &2807946153629063611
 GameObject:
   m_ObjectHideFlags: 0

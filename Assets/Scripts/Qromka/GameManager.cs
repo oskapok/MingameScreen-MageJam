@@ -145,7 +145,6 @@ public class GameManager : MonoBehaviour
             updateAmmoEvent?.Invoke(this, new PlayerEventArgs(playerIndex));
             return true;
         }    
-
         return false;
     }
 

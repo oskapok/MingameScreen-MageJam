@@ -7,7 +7,9 @@ public class ScoreBoard : MonoBehaviour
 {
     int numberOfPlayers;
 
-    List<int> points = new List<int>();
+    public static event EventHandler<BoardEventArgs> updateScoreBoard;
+
+    static List<string> points = new List<string>();
 
     public static ScoreBoard Instance;
 
@@ -16,9 +18,7 @@ public class ScoreBoard : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            PrepareBoard();
         }
-
 
         //If duplicate abort
         else if (Instance != this)
@@ -29,16 +29,29 @@ public class ScoreBoard : MonoBehaviour
         //Mark as permament
         DontDestroyOnLoad(gameObject);
     }
-    public void AddPoint(int playerIndex)
+    public void AddPoint(int playerIndex, ScoreType score)
     {
-        points[playerIndex] += 1;
+        points[playerIndex] += ((int)(score)).ToString();
+        updateScoreBoard?.Invoke(this, new BoardEventArgs(playerIndex,score));
     }
 
+    public string  GetPoints(int playerIndex)
+    {
+        return points[playerIndex];
+    }
+    private void Start()
+    {
+        PrepareBoard();
+    }
     void PrepareBoard()
     {
-        for (int i = 0; i< numberOfPlayers; i++)
+        numberOfPlayers = GameManager.Instance.GetNumberOfPlayers();
+        if(points.Count ==0)
         {
-            points.Add(0);
+            for (int i = 0; i< numberOfPlayers; i++)
+            {
+                points.Add("");
+            }
         }
     }
     
