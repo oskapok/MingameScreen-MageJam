@@ -50,7 +50,10 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-
+    public int GetNumberOfPlayers()
+    {
+        return numberOfPlayers;
+    }
     void SetUpScene()
     {
         //Create Player datas 
@@ -76,7 +79,7 @@ public class GameManager : MonoBehaviour
         //Assign Default Values
         for (int i = 0; i < numberOfPlayers; i++)
         {
-            playerDatas[i].player = GameObject.Find("Player" + i.ToString());
+            playerDatas[i].player = GameObject.Find("P" + i.ToString());
             playerDatas[i].weapon = Weapon.Pistol;
             playerDatas[i].ammo = startPistolAmmo;
             playerDatas[i].isAlive = true;

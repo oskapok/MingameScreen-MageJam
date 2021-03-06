@@ -70,9 +70,6 @@ public class UI_Game : MonoBehaviour
         }
     }
 
-
-
-
     void UpdateAmmo(object sender, PlayerEventArgs e)
     {
         uI_Players[e.playerIndex].AddAmmo();
