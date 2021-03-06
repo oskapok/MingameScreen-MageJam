@@ -7,15 +7,27 @@ public class QTEST : MonoBehaviour
     private void Start()
     {
 
-        SoundManager.Instance.PlayMusic("19Floor");
+
     }
 
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            SoundManager.Instance.PlaySFX("laserWave");
+            Debug.Log(GameManager.Instance.AddAmmo(0));
+        }
+        else if(Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            Debug.Log(GameManager.Instance.AddAmmo(1));
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            Debug.Log(GameManager.Instance.AddAmmo(2));
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            Debug.Log(GameManager.Instance.AddAmmo(3));
         }
     }
 }
