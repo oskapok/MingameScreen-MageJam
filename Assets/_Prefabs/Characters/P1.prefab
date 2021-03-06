@@ -245,7 +245,7 @@ MonoBehaviour:
   canShoot: 1
   bulletPrefab: {fileID: 1821157563395715716, guid: 3f1cf7803485e2e4ba591fa30e7f1714, type: 3}
   outOfWeapon: {fileID: 985658817}
-  fireRate: 2.5
+  fireRate: 0.2
   fireTimer: 1
   isGrounded: 0
   groundCheck1: {fileID: 1093520803}

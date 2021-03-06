@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -30,7 +31,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform outOfWeapon;
     [SerializeField] private float fireRate;
     [SerializeField] private float fireTimer;
-
+    private bool isShooting = false;
+    private Coroutine shootingRoutine;
 
     [Header("Gravity")]
     [SerializeField] private bool isGrounded;
@@ -64,13 +66,15 @@ public class PlayerController : MonoBehaviour
     {
         Movement();
         FlipingSprite();
-        Shooting();
+        Shoot();
     }
-
+    void Update()
+    {
+        Jumping();
+    }
     void Movement()
     {
         isGrounded = Physics2D.OverlapArea(groundCheck1.position, groundCheck2.position, groundMask);
-
 
         if (canMove)
         {
@@ -82,7 +86,10 @@ public class PlayerController : MonoBehaviour
             else if(horizontalMove < 0)
                 facingRight = false;
         }
+    }
 
+    void Jumping()
+    {
         if (canJump)
         {
             if (Input.GetKeyDown((KeyCode)(jumpKey)) && isGrounded)
@@ -103,8 +110,7 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector2(localScale.x * -1, localScale.y);
         }
     }
-
-
+    /*
     void Shooting()
     {
         if (canShoot)
@@ -121,11 +127,33 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    */
+    void Shoot()
+    {
+        if (canShoot)
+        {
+            if (Input.GetKey((KeyCode)(shootKey)) && !isShooting)
+            {
+                shootingRoutine = StartCoroutine(Shooting());
+            }
+        }
+        else
+        {
+            shootingRoutine = null;
+        }
+    }
+
+    IEnumerator Shooting()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, outOfWeapon.position, Quaternion.identity);
+        bullet.GetComponent<Bullet>().side = Convert.ToInt32(facingRight);
+        isShooting = true;
+        yield return new WaitForSeconds(fireRate);
+        isShooting = false;
+    }
 
     private void OnDrawGizmos()
     {
-        //Gizmos.DrawSphere(groundCheck1.position, groundDist);
-        //Gizmos.DrawSphere(groundCheck2.position, groundDist);
         Gizmos.DrawLine(groundCheck1.position, groundCheck2.position);
     }
 }
