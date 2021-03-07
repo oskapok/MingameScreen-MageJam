@@ -50,13 +50,13 @@ public class WeaponBox : MonoBehaviour
         switch(player.currentWeapon)
         {
             case 0:
-                player.fireRate = 0.4f;
+                player.fireRate = 0.7f;
                 break;
             case 1:
-                player.fireRate = 0.2f;
+                player.fireRate = 0.3f;
                 break;
             case 2:
-                player.fireRate = 0.3f;
+                player.fireRate = 0.5f;
                 break;
         }
     }
