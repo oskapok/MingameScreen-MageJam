@@ -53,6 +53,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a6b4f6b9700580545abae50a67a36ae2, type: 3}
   - {fileID: 8300000, guid: 2ffe2011b4e66b54caa641fa65ce10cc, type: 3}
   - {fileID: 8300000, guid: 0783242d3d16e1c45a99ac5c2b860705, type: 3}
+  - {fileID: 8300000, guid: ed25ae4a75d456441834c9a2e22f4b7b, type: 3}
+  - {fileID: 8300000, guid: 9844fda56bce6d0448612a73877e7453, type: 3}
   musicList:
   - {fileID: 8300000, guid: ddd9bfc17313a4f4786b50807b80afa5, type: 3}
 --- !u!114 &2047132295803185152
