@@ -14,13 +14,13 @@ public class BoxSpawner : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(SpawnBoxes());
+        //StartCoroutine(SpawnBoxes());
         int randomTimeOfSpawn = Random.Range(minTimeOfSpawn, maxTimeOfSpawn);
     }
 
-    IEnumerator SpawnBoxes()
-    {
-        Instantiate(boxes[Random.Range(0, boxes.Count)], 
-        yield return new WaitForSeconds(randomTimeOfSpawn);
-    }
+    //IEnumerator SpawnBoxes()
+    //{
+    //    Instantiate(boxes[Random.Range(0, boxes.Count)], 
+    //    //yield return new WaitForSeconds(randomTimeOfSpawn);
+    //}
 }

@@ -34,7 +34,6 @@ public class UI_Player : MonoBehaviour
 
     public void AddAmmo(int currentAmmo)
     {
-        Debug.Log(ammoGrid.transform.childCount);
         for (int i = 0; i < currentAmmo; i++)
         {
             ammoGrid.transform.GetChild(i).GetComponent<Image>().sprite = currentWeaponAmmo;
