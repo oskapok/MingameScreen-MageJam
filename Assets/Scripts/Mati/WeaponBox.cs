@@ -27,4 +27,9 @@ public class WeaponBox : MonoBehaviour
         player.currentWeapon = randomWeapon;
         player.ChangeGunSprite(listOfIdleWeapons[randomWeapon]);
     }
+
+    void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
+    }
 }

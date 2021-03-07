@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class AmmoBox : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
+    
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -26,5 +18,10 @@ public class AmmoBox : MonoBehaviour
     void CollectingAmmo(int playerIndex)
     {
         GameManager.Instance.AddAmmo(playerIndex);
+    }
+
+    void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
     }
 }
