@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2047132295803185154}
   - component: {fileID: 2047132295803185152}
   m_Layer: 0
-  m_Name: SM
+  m_Name: SoundManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,9 +45,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxList:
-  - {fileID: 8300000, guid: 0d5e3b7083d1c1b4e8984d2a46765883, type: 3}
+  - {fileID: 8300000, guid: 3b2e5e6514bc1a64d85377ef8d3de560, type: 3}
+  - {fileID: 8300000, guid: 351ee95eed9328f4f9395569b7c35a48, type: 3}
+  - {fileID: 8300000, guid: 3347616e38117e14fbae2284bc54aca7, type: 3}
+  - {fileID: 8300000, guid: 04040a429d513414480bed3bf7d90981, type: 3}
+  - {fileID: 8300000, guid: 22a4a73ec5605a748a5199e1c1d24194, type: 3}
+  - {fileID: 8300000, guid: a6b4f6b9700580545abae50a67a36ae2, type: 3}
+  - {fileID: 8300000, guid: 2ffe2011b4e66b54caa641fa65ce10cc, type: 3}
+  - {fileID: 8300000, guid: 0783242d3d16e1c45a99ac5c2b860705, type: 3}
   musicList:
-  - {fileID: 8300000, guid: a8742cdd4e7ea4a4d849cc755b276ff8, type: 3}
+  - {fileID: 8300000, guid: ddd9bfc17313a4f4786b50807b80afa5, type: 3}
 --- !u!114 &2047132295803185152
 MonoBehaviour:
   m_ObjectHideFlags: 0

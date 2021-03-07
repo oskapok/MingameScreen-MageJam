@@ -104,6 +104,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown((KeyCode)(jumpKey)) && isGrounded)
             {
                 rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+                SoundManager.Instance.PlaySFX("Jump");
             }
         }
     }
@@ -128,15 +129,42 @@ public class PlayerController : MonoBehaviour
     {
         if (canShoot)
         {
-            if (Input.GetKey((KeyCode)(shootKey)) && !isShooting)
+            if (Input.GetKeyDown((KeyCode)(shootKey)) && !isShooting)
             {
                 if (GameManager.Instance.RemoveAmmo(playerNumber) == true)
                 {
                     shootingRoutine = StartCoroutine(Shooting());
+
+                    switch(currentWeapon)
+                    {
+                        case 0:
+                            SoundManager.Instance.PlaySFX("PistolShot");
+                            break;
+                        case 1:
+                            SoundManager.Instance.PlaySFX("RifleShot");
+                            break;
+                        case 2:
+                            SoundManager.Instance.PlaySFX("ShotgunShot1");
+                            break;
+                    }
+
                 }
                 else
                 {
                     Debug.Log("no ammo");
+                    switch (currentWeapon)
+                    {
+                        case 0:
+                            SoundManager.Instance.PlaySFX("PistolNoAmmo");
+                            break;
+                        case 1:
+                            SoundManager.Instance.PlaySFX("RifleNoAmmo");
+                            break;
+                        case 2:
+                            SoundManager.Instance.PlaySFX("ShotgunNoAmmo");
+                            break;
+
+                    }
                 }
             }
         }
@@ -167,6 +195,7 @@ public class PlayerController : MonoBehaviour
         canMove = false;
         canJump = false;
         canShoot = false;
+        SoundManager.Instance.PlaySFX("Dead1");
     }
 
     void DestroyPlayerFromMap()

@@ -52,7 +52,7 @@ public class Bullet : MonoBehaviour
             player.anim.SetInteger("playerIndex", player.playerNumber);
             player.anim.SetTrigger("die");
 
-            Destroy(this.gameObject, 0.05f);
+            Destroy(this.gameObject, 0.03f);
         }
         if(collision.CompareTag("Environment"))
         {
@@ -63,7 +63,7 @@ public class Bullet : MonoBehaviour
                 wallCollision.Play();
             }
 
-            Destroy(this.gameObject, 0.05f);
+            Destroy(this.gameObject, 0.03f);
         }
     }
 
