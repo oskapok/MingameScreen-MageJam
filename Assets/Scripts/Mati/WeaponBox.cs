@@ -7,6 +7,7 @@ public class WeaponBox : MonoBehaviour
 
     public List<Sprite> listOfIdleWeapons;
     [SerializeField] private GameObject parachuteSprite;
+    int randomWeapon;
 
     void Start()
     {
@@ -18,7 +19,9 @@ public class WeaponBox : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             CollectingWeapon(collision.GetComponent<PlayerController>());
+            SoundManager.Instance.PlaySFX("GetNewWeapon");
             Destroy(this.gameObject);
+            
         }
         if(collision.CompareTag("Environment") || collision.CompareTag("Box"))
         {
@@ -35,11 +38,10 @@ public class WeaponBox : MonoBehaviour
     }
     void CollectingWeapon(PlayerController player)
     {
-        int randomWeapon = Random.Range(0, 3);
-        while(randomWeapon == player.currentWeapon)
+        randomWeapon = Random.Range(0, 3);
+        if (randomWeapon == player.currentWeapon)
         {
             randomWeapon = Random.Range(0, 3);
-            player.currentWeapon = randomWeapon;
         }
         GameManager.Instance.SwitchWeapon(player.playerNumber, (Weapon)randomWeapon);
         player.currentWeapon = randomWeapon;

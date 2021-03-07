@@ -59,12 +59,22 @@ public class PlayerController : MonoBehaviour
             case 1:
                 playerAxis = "Horizontal_P1";
                 jumpKey = (int)KeyCode.W;
-                shootKey = (int)KeyCode.Space;
+                shootKey = (int)KeyCode.S;
                 break;
             case 2:
                 playerAxis = "Horizontal_P2";
                 jumpKey = (int)KeyCode.UpArrow;
-                shootKey = (int)KeyCode.RightShift;
+                shootKey = (int)KeyCode.DownArrow;
+                break;
+            case 3:
+                playerAxis = "Horizontal_P3";
+                jumpKey = (int)KeyCode.I;
+                shootKey = (int)KeyCode.K;
+                break;
+            case 4:
+                playerAxis = "Horizontal_P4";
+                jumpKey = (int)KeyCode.JoystickButton0;
+                shootKey = (int)KeyCode.JoystickButton1;
                 break;
         }
 
@@ -176,8 +186,22 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Shooting()
     {
-        GameObject bullet = Instantiate(bulletPrefab, outOfWeapon.position, Quaternion.identity);
-        bullet.GetComponent<Bullet>().side = Convert.ToInt32(facingRight);
+        if(currentWeapon == 0 || currentWeapon == 1)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, outOfWeapon.position, Quaternion.identity);
+            bullet.GetComponent<Bullet>().side = Convert.ToInt32(facingRight);
+        }
+        if(currentWeapon == 2)
+        {
+            GameObject bullet1 = Instantiate(bulletPrefab, outOfWeapon.position, Quaternion.identity);
+            GameObject bullet2 = Instantiate(bulletPrefab, outOfWeapon.position, Quaternion.identity);
+
+            bullet1.GetComponent<Bullet>().side = Convert.ToInt32(facingRight);
+            bullet2.GetComponent<Bullet>().side = Convert.ToInt32(facingRight);
+            bullet1.GetComponent<Bullet>().isShotgun = true;
+        }
+        
+        
         isShooting = true;
         anim.SetTrigger("shoot");
         yield return new WaitForSeconds(fireRate);

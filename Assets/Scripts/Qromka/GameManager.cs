@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour
 
         //Mark as permament
         DontDestroyOnLoad(gameObject);
+
+        SetUpScene(2);
     }
 
     public int GetNumberOfPlayers()

@@ -10,10 +10,14 @@ public class Bullet : MonoBehaviour
     private Vector2 dirOfBullet;
     [SerializeField] private ParticleSystem wallCollision;
     [SerializeField] private ParticleSystem playerCollision;
+    public bool isShotgun;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+
 
         switch(side)
         {
@@ -24,7 +28,10 @@ public class Bullet : MonoBehaviour
                 dirOfBullet = Vector2.right;
                 break;
         }
-        
+
+        if(isShotgun)
+            dirOfBullet += new Vector2(0f, 0.05f);
+
     }
     void FixedUpdate()
     {
@@ -44,8 +51,6 @@ public class Bullet : MonoBehaviour
 
             if (!playerCollision.isPlaying)
             {
-                var main = playerCollision.main;
-                main.startDelay = 0.07f;
                 playerCollision.Play();
             }
 
@@ -62,13 +67,9 @@ public class Bullet : MonoBehaviour
 
             if(!wallCollision.isPlaying)
             {
-                //var main = playerCollision.main;
-                //main.startDelay = 0.02f;
-
                 wallCollision.Play();
             }
                 
-
             Destroy(this.gameObject, 0.03f);
         }
     }

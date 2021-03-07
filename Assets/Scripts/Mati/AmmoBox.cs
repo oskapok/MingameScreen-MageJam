@@ -17,6 +17,7 @@ public class AmmoBox : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             CollectingAmmo(collision.GetComponent<PlayerController>().playerNumber);
+            SoundManager.Instance.PlaySFX("GetAmmo");
             Destroy(this.gameObject);
         }
         if(collision.CompareTag("Environment"))

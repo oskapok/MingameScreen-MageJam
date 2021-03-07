@@ -1735,22 +1735,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4600769301950384348, guid: 6d2eab7923149bf44950d1aec07353cf, type: 3}
-      propertyPath: maxRifleAmmo
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4600769301950384348, guid: 6d2eab7923149bf44950d1aec07353cf, type: 3}
-      propertyPath: maxPistolAmmo
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4600769301950384348, guid: 6d2eab7923149bf44950d1aec07353cf, type: 3}
-      propertyPath: maxShotgunAmmo
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4600769301950384348, guid: 6d2eab7923149bf44950d1aec07353cf, type: 3}
-      propertyPath: startPistolAmmo
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4600769301950384349, guid: 6d2eab7923149bf44950d1aec07353cf, type: 3}
       propertyPath: m_RootOrder
       value: 2

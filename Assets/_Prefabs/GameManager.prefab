@@ -46,10 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 0}
   numberOfPlayers: 2
-  startPistolAmmo: 4
-  maxPistolAmmo: 6
-  maxRifleAmmo: 8
-  maxShotgunAmmo: 3
+  startPistolAmmo: 2
+  maxPistolAmmo: 4
+  maxRifleAmmo: 5
+  maxShotgunAmmo: 7
 --- !u!114 &4600769301950384338
 MonoBehaviour:
   m_ObjectHideFlags: 0
