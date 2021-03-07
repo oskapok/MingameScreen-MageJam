@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     int maxShotgunAmmo = 3;
 
-
     public int MaxPistolAmmo
     {
         get { return maxPistolAmmo; }
@@ -52,7 +51,6 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            SetUpScene();
         }
 
 
@@ -70,8 +68,10 @@ public class GameManager : MonoBehaviour
     {
         return numberOfPlayers;
     }
-    void SetUpScene()
+
+   public void SetUpScene(int newNumberOfPlayers)
     {
+        numberOfPlayers = newNumberOfPlayers;
         //Create Player datas 
         switch (numberOfPlayers)
         {
@@ -167,7 +167,6 @@ public class GameManager : MonoBehaviour
     public bool SwitchWeapon(int playerIndex, Weapon newWeapon)
     {
         PlayerData selectedPlayer = playerDatas[playerIndex];
-
             selectedPlayer.weapon = newWeapon;
             switch (newWeapon)
             {
