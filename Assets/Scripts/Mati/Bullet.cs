@@ -49,9 +49,13 @@ public class Bullet : MonoBehaviour
 
                 playerCollision.Play();
             }
-                
 
-            Destroy(this.gameObject, 0.3f);
+            PlayerController player = collision.GetComponent<PlayerController>();
+
+            player.anim.SetInteger("playerIndex", player.playerNumber);
+            player.anim.SetTrigger("die");
+
+            Destroy(this.gameObject, 0.05f);
         }
         if(collision.CompareTag("Environment"))
         {
@@ -66,7 +70,7 @@ public class Bullet : MonoBehaviour
             }
                 
 
-            Destroy(this.gameObject, 0.3f);
+            Destroy(this.gameObject, 0.05f);
         }
     }
 

@@ -297,7 +297,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0045876764, y: -0.014693446}
+  m_Offset: {x: 0.0045876764, y: -0.014978506}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -308,7 +308,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.08008074, y: 0.15951069}
+  m_Size: {x: 0.08008074, y: 0.15894057}
   m_EdgeRadius: 0
 --- !u!61 &453075376
 BoxCollider2D:
@@ -323,7 +323,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.001010254, y: -0.016033046}
+  m_Offset: {x: 0.0047159716, y: 0.016194407}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -334,7 +334,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.11150679, y: 0.1439711}
+  m_Size: {x: 0.08243112, y: 0.09381878}
   m_EdgeRadius: 0
 --- !u!95 &5950436458976557494
 Animator:
@@ -349,7 +349,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: f98ed4e0e1a45e644b4e8bf1a550e14c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -367,6 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e292ed091533f3c41af9da374a89a523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   playerNumber: 1
   canMove: 1
   moveSpeed: 7

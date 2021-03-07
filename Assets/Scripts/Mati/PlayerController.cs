@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 
     private Rigidbody2D rb;
-    private Animator anim;
+    [HideInInspector] public Animator anim;
 
 
     [Header("Controls")]
@@ -108,14 +108,18 @@ public class PlayerController : MonoBehaviour
 
     void FlipingSprite()
     {
-        if (facingRight)
+        if(canMove)
         {
-            transform.localScale = new Vector2(localScale.x * 1, localScale.y);
+            if (facingRight)
+            {
+                transform.localScale = new Vector2(localScale.x * 1, localScale.y);
+            }
+            else if (!facingRight)
+            {
+                transform.localScale = new Vector2(localScale.x * -1, localScale.y);
+            }
         }
-        else if (!facingRight)
-        {
-            transform.localScale = new Vector2(localScale.x * -1, localScale.y);
-        }
+        
     }
 
     void Shoot()
@@ -145,8 +149,8 @@ public class PlayerController : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, outOfWeapon.position, Quaternion.identity);
         bullet.GetComponent<Bullet>().side = Convert.ToInt32(facingRight);
         isShooting = true;
+        anim.SetInteger("weaponIndex", 0);     // zmienic liczbe na aktualna bron !!!!!!!!!!!!!!!!!!
         anim.SetTrigger("shoot");
-        anim.SetInteger("weaponIndex", 0);       // zmienic liczbe na aktualna bron !!!!!!!!!!!!!!!!!!
         yield return new WaitForSeconds(fireRate);
         isShooting = false;
     }
@@ -154,6 +158,19 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(groundCheck1.position, groundCheck2.position);
+    }
+
+
+    void DisablePlayer()
+    {
+        canMove = false;
+        canJump = false;
+        canShoot = false;
+    }
+
+    void DestroyPlayerFromMap()
+    {
+        //remove player from this round
     }
 
     void OnBecameInvisible()
