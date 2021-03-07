@@ -5,28 +5,26 @@ using UnityEngine;
 public class WeaponBox : MonoBehaviour
 {
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
+    public List<Sprite> listOfIdleWeapons;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            CollectingWeapon(collision.GetComponent<PlayerController>().playerNumber);
+            CollectingWeapon(collision.GetComponent<PlayerController>());
             Destroy(this.gameObject);
         }
     }
 
-    void CollectingWeapon(int playerIndex)
+    void CollectingWeapon(PlayerController player)
     {
         int randomWeapon = Random.Range(0, 3);
-        GameManager.Instance.SwitchWeapon(playerIndex, (Weapon)randomWeapon);
+        while(randomWeapon == player.currentWeapon)
+        {
+            randomWeapon = Random.Range(0, 3);
+        }
+        GameManager.Instance.SwitchWeapon(player.playerNumber, (Weapon)randomWeapon);
+        player.currentWeapon = randomWeapon;
+        player.ChangeGunSprite(listOfIdleWeapons[randomWeapon]);
     }
 }

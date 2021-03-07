@@ -378,6 +378,8 @@ MonoBehaviour:
   outOfWeapon: {fileID: 985658817}
   fireRate: 0.2
   fireTimer: 1
+  currentWeapon: 0
+  gunSprite: {fileID: 2187859132607495995}
   isGrounded: 0
   groundCheck1: {fileID: 1093520803}
   groundCheck2: {fileID: 6939358201523246932}

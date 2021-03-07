@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float fireTimer;
     private bool isShooting = false;
     private Coroutine shootingRoutine;
+    public int currentWeapon;
+    [SerializeField] private SpriteRenderer gunSprite;
 
     [Header("Gravity")]
     [SerializeField] private bool isGrounded;
@@ -149,7 +151,6 @@ public class PlayerController : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, outOfWeapon.position, Quaternion.identity);
         bullet.GetComponent<Bullet>().side = Convert.ToInt32(facingRight);
         isShooting = true;
-        anim.SetInteger("weaponIndex", 0);     // zmienic liczbe na aktualna bron !!!!!!!!!!!!!!!!!!
         anim.SetTrigger("shoot");
         yield return new WaitForSeconds(fireRate);
         isShooting = false;
@@ -171,6 +172,14 @@ public class PlayerController : MonoBehaviour
     void DestroyPlayerFromMap()
     {
         //remove player from this round
+    }
+
+
+    public void ChangeGunSprite(Sprite _sprite)
+    {
+        gunSprite.sprite = _sprite;
+        anim.SetInteger("weaponIndex", currentWeapon);
+        Debug.Log("Zmienino na: " + _sprite.name);
     }
 
     void OnBecameInvisible()
