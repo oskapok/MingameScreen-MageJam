@@ -44,6 +44,8 @@ public class Bullet : MonoBehaviour
 
             if (!playerCollision.isPlaying)
             {
+                var main = playerCollision.main;
+                main.startDelay = 0.07f;
                 playerCollision.Play();
             }
 
@@ -60,8 +62,12 @@ public class Bullet : MonoBehaviour
 
             if(!wallCollision.isPlaying)
             {
+                //var main = playerCollision.main;
+                //main.startDelay = 0.02f;
+
                 wallCollision.Play();
             }
+                
 
             Destroy(this.gameObject, 0.03f);
         }
