@@ -179,11 +179,6 @@ public class PlayerController : MonoBehaviour
     {
         gunSprite.sprite = _sprite;
         anim.SetInteger("weaponIndex", currentWeapon);
-        Debug.Log("Zmienino na: " + _sprite.name);
     }
 
-    void OnBecameInvisible()
-    {
-        Destroy(this.gameObject);
-    }
 }
