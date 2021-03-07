@@ -32,6 +32,56 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     int maxShotgunAmmo = 3;
 
+    [SerializeField]
+    GameObject p1, p2, p3, p4;
+
+    [SerializeField]
+    GameObject spawnPointsAll;
+
+    Transform spawnPoints;
+
+    public int currentMap = 0;
+
+    public void SpawnPlayers()
+    {
+        switch(currentMap)
+        {
+            case 0:
+                spawnPoints = spawnPointsAll.transform.GetChild(0);
+                
+                break;
+            case 1:
+                spawnPoints = spawnPointsAll.transform.GetChild(1);
+                break;
+            case 2:
+                spawnPoints = spawnPointsAll.transform.GetChild(2);
+                break;
+        }
+        Spawn();
+    }
+
+    void Spawn()
+    {
+        if(numberOfPlayers == 2)
+        {
+            Instantiate(p1, spawnPoints.GetChild(0).position, Quaternion.identity);
+            Instantiate(p2, spawnPoints.GetChild(1).position, Quaternion.identity);
+        }
+        else if (numberOfPlayers == 3)
+        {
+            Instantiate(p1, spawnPoints.GetChild(0).position, Quaternion.identity);
+            Instantiate(p2, spawnPoints.GetChild(1).position, Quaternion.identity);
+            Instantiate(p3, spawnPoints.GetChild(2).position, Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(p1, spawnPoints.GetChild(0).position, Quaternion.identity);
+            Instantiate(p2, spawnPoints.GetChild(1).position, Quaternion.identity);
+            Instantiate(p3, spawnPoints.GetChild(2).position, Quaternion.identity);
+            Instantiate(p4, spawnPoints.GetChild(3).position, Quaternion.identity);
+        }
+
+    }
     public int MaxPistolAmmo
     {
         get { return maxPistolAmmo; }

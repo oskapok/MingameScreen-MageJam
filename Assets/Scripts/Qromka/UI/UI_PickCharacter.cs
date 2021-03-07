@@ -90,7 +90,8 @@ public class UI_PickCharacter : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && canStart)
         {
             GameManager.Instance.SetUpScene(numberofplayers);
-            Destroy(this);
+            GameManager.Instance.SpawnPlayers();
+            Destroy(this.gameObject);
         }
     }
 
