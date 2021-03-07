@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class BoxSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private List<Transform> spawnPoints;
+    [SerializeField] private List<GameObject> boxes;
+    [SerializeField] private int maxBoxes;
+    [SerializeField] private int minTimeOfSpawn;
+    [SerializeField] private int maxTimeOfSpawn;
+    private int randomTimeOfSpawn;
+
+
     void Start()
     {
-        
+        StartCoroutine(SpawnBoxes());
+        int randomTimeOfSpawn = Random.Range(minTimeOfSpawn, maxTimeOfSpawn);
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator SpawnBoxes()
     {
-        
+        Instantiate(boxes[Random.Range(0, boxes.Count)], 
+        yield return new WaitForSeconds(randomTimeOfSpawn);
     }
 }
