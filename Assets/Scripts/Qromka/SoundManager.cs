@@ -76,7 +76,7 @@ public class SoundManager : MonoBehaviour
 		//Play only if exists
 		if (musicDictionary.TryGetValue(musicName, out int index))
 		{
-			musicSource.volume = 0.3f;
+			musicSource.volume = 0.09f;
 			musicSource.clip = musicList[index];
 			musicSource.Play();
 		}

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UI_PickCharacter : MonoBehaviour
 {
+
+
     Sprite notReady;
     public UI_Game uI;
 
@@ -21,7 +23,8 @@ public class UI_PickCharacter : MonoBehaviour
 
     private void Start()
     {
-        p1Playing = false;
+        SoundManager.Instance.PlayMusic("RPS_-_The_Game_Is_Here_loop");
+        p1Playing = false; 
         p2Playing = false;
         p3Playing = false;
         p4Playing = false;
