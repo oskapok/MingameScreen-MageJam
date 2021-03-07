@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     public bool canShoot = true;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform outOfWeapon;
-    [SerializeField] private float fireRate;
+    public float fireRate;
     [SerializeField] private float fireTimer;
     private bool isShooting = false;
     private Coroutine shootingRoutine;
@@ -220,6 +220,7 @@ public class PlayerController : MonoBehaviour
         canJump = false;
         canShoot = false;
         SoundManager.Instance.PlaySFX("Dead1");
+        
     }
 
     void DestroyPlayerFromMap()

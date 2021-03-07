@@ -46,8 +46,19 @@ public class WeaponBox : MonoBehaviour
         GameManager.Instance.SwitchWeapon(player.playerNumber, (Weapon)randomWeapon);
         player.currentWeapon = randomWeapon;
         player.ChangeGunSprite(listOfIdleWeapons[randomWeapon]);
-        Debug.Log("Current weapon: " + player.currentWeapon);
-        Debug.Log("Random weapon: " + randomWeapon);
+
+        switch(player.currentWeapon)
+        {
+            case 0:
+                player.fireRate = 0.4f;
+                break;
+            case 1:
+                player.fireRate = 0.2f;
+                break;
+            case 2:
+                player.fireRate = 0.3f;
+                break;
+        }
     }
 
     void OnBecameInvisible()

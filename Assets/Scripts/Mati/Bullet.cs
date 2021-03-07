@@ -8,8 +8,6 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb;
     [HideInInspector] public int side; // 0 - left;   1 - right
     private Vector2 dirOfBullet;
-    [SerializeField] private ParticleSystem wallCollision;
-    [SerializeField] private ParticleSystem playerCollision;
     public bool isShotgun;
 
 
@@ -49,10 +47,6 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log("Collision with player");
 
-            if (!playerCollision.isPlaying)
-            {
-                playerCollision.Play();
-            }
 
             PlayerController player = collision.GetComponent<PlayerController>();
 
@@ -65,10 +59,6 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log("Collision with environment");
 
-            if(!wallCollision.isPlaying)
-            {
-                wallCollision.Play();
-            }
                 
             Destroy(this.gameObject, 0.03f);
         }
