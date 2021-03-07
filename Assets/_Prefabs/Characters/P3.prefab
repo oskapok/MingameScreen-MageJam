@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 7815107637198056943}
   - component: {fileID: 4809564944466987044}
   m_Layer: 9
-  m_Name: P2
+  m_Name: P3
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +162,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1889441527787109331, guid: 4a4a9811b1b7454429c6ccd10beaad04, type: 3}
+  m_Sprite: {fileID: -2651039445283772561, guid: 4a4a9811b1b7454429c6ccd10beaad04, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
-  playerNumber: 2
+  playerNumber: 3
   canMove: 1
   moveSpeed: 7
   canJump: 1
