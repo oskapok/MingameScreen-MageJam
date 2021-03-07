@@ -55,6 +55,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallParticle Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5953321642320276566, guid: 408fb5d60e94e3242b11c5c99614b6ba, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953321642320276566, guid: 408fb5d60e94e3242b11c5c99614b6ba, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953321642320276566, guid: 408fb5d60e94e3242b11c5c99614b6ba, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 990960207
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953321642320276566, guid: 408fb5d60e94e3242b11c5c99614b6ba, type: 3}
+      propertyPath: m_RenderAlignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853076252981510196, guid: 408fb5d60e94e3242b11c5c99614b6ba, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853076252981510196, guid: 408fb5d60e94e3242b11c5c99614b6ba, type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8853076252981510196, guid: 408fb5d60e94e3242b11c5c99614b6ba, type: 3}
       propertyPath: LightsModule.enabled
       value: 0

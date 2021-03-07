@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 
 public class Bullet : MonoBehaviour
 {
     private Rigidbody2D rb;
     [HideInInspector] public int side; // 0 - left;   1 - right
     private Vector2 dirOfBullet;
+    [SerializeField] private ParticleSystem wallCollision;
+    [SerializeField] private ParticleSystem playerCollision;
 
     void Start()
     {
@@ -30,20 +33,40 @@ public class Bullet : MonoBehaviour
 
     void BulletFly()
     {
-        rb.AddForce(dirOfBullet * 300f * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        rb.AddForce(dirOfBullet * 200f * Time.fixedDeltaTime, ForceMode2D.Impulse);
     }
-
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            //kill
-            Destroy(this.gameObject);
+            Debug.Log("Collision with player");
+
+            if (!playerCollision.isPlaying)
+            {
+                var main = playerCollision.main;
+                main.startDelay = 0.07f;
+
+                playerCollision.Play();
+            }
+                
+
+            Destroy(this.gameObject, 0.3f);
         }
         if(collision.CompareTag("Environment"))
         {
-            Destroy(this.gameObject);
+            Debug.Log("Collision with environment");
+
+            if(!wallCollision.isPlaying)
+            {
+                //var main = playerCollision.main;
+                //main.startDelay = 0.02f;
+
+                wallCollision.Play();
+            }
+                
+
+            Destroy(this.gameObject, 0.3f);
         }
     }
 

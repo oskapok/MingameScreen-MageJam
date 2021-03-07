@@ -6,7 +6,9 @@ public class PlayerController : MonoBehaviour
 {
 
     private Rigidbody2D rb;
-    
+    private Animator anim;
+
+
     [Header("Controls")]
     public int playerNumber;
     private string playerAxis;
@@ -42,9 +44,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
 
 
+    
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         localScale = transform.localScale;
 
         switch(playerNumber)
@@ -140,6 +145,8 @@ public class PlayerController : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, outOfWeapon.position, Quaternion.identity);
         bullet.GetComponent<Bullet>().side = Convert.ToInt32(facingRight);
         isShooting = true;
+        anim.SetTrigger("shoot");
+        anim.SetInteger("weaponIndex", 0);       // zmienic liczbe na aktualna bron !!!!!!!!!!!!!!!!!!
         yield return new WaitForSeconds(fireRate);
         isShooting = false;
     }
@@ -147,5 +154,10 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(groundCheck1.position, groundCheck2.position);
+    }
+
+    void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
     }
 }
